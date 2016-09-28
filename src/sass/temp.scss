@@ -1,0 +1,40 @@
+body {
+    padding-top: 60px;
+}
+[v-cloak] { 
+    display:none;
+}
+
+.dashboard {
+    table-layout: fixed;
+}
+.dashboard .no {
+    width: 4em;
+}
+.dashboard .st {
+    width: 12em;
+}
+.dashboard .an,
+.dashboard .ed {
+    width: 8em;
+}
+.dashboard .qu {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dashboard th,
+.dashboard td {
+    vertical-align: middle !important;
+}
+
+pre.program {
+    height: 20em;
+    overflow: scroll;
+    word-wrap: inherit;
+}
+
+dl.comment dd pre {
+    color: rgb(102, 102, 102);
+    margin-bottom: 0;
+}

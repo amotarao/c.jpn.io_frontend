@@ -1,0 +1,33 @@
+{
+  "name": "c.jpn.io_htdocs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^1.0.27",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^0.7.13"
+  },
+  "browser": {
+    "vue": "./node_modules/vue/dist/vue.min.js",
+    "vue-resource": "./node_modules/vue-resource/dist/vue-resource.min.js",
+    "vue-router": "./node_modules/vue-router/dist/vue-router.min.js"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-webserver": "^0.9.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
