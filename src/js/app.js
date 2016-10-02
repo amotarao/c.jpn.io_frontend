@@ -8,6 +8,99 @@ Vue.use(VueResource);
 const router = new VueRouter({
   history: true,
   saveScrollPosition: true
+});
+
+var Foo = {
+  template: '<p>This is foo!</p>'
+};
+
+var Bar = {
+  template: '<p>This is bar!</p>'
+};
+
+/*
+document.cookie = "KEY=VALUE";
+var hoge = document.cookie;
+
+
+
+console.log(hoge);*/
+
+
+router.map({
+  '/foo': {
+    component: Foo
+  },
+  '/bar': {
+    component: Bar
+  }
+});
+
+var LoginForm = new Vue({
+  el: '#login_form',
+  data: {
+    input: {
+      email: '',
+      password: ''
+    },
+    emailStatus: '',
+    passwordStatus: '',
+    submitting: false, // falseでボタン有効、trueでボタン無効
+  },
+  created: function () {
+    this.$http.get('/api/publishToken.php').then((response) => {
+      this.input.token = response.body.token;
+      console.log(this.input.token);
+    }, (response) => {
+      // error callback
+    });
+  },
+  methods: {
+    formCheck: function () {
+      if ('' == this.email && '' == this.password) {
+        Alert.addAlert('warning', '空欄です！');
+        this.emailStatus = 'has-error';
+        this.passwordStatus = 'has-error';
+        return;
+      } else if ('' == this.email) {
+        Alert.addAlert('warning', '空欄です！');
+        this.emailStatus = 'has-error';
+        this.passwordStatus = '';
+        return;
+      } else if ('' == this.password) {
+        Alert.addAlert('warning', '空欄です！');
+        this.emailStatus = '';
+        this.passwordStatus = 'has-error';
+        return;
+      } else {
+        this.emailStatus = '';
+        this.passwordStatus = '';
+      }
+
+      this.submit();
+    },
+    submit: function () {
+      this.submitting = true;
+
+      this.$http.post('http://tnkt.boo.jp/aaa/api/', this.input).then((response) => {
+        console.log("post success")/*
+        response.status;
+        response.statusText;
+        response.headers.get('Expires');
+        this.$set('someData', response.body);*/
+      }, (response) => {
+        console.log("post failed")
+      });/*
+
+      this.$http.post('http://tnkt.boo.jp/aaa/api/', this.email, function (data, status, request) {
+        console.log("post success")
+        console.log(status)
+      })
+      .error(function (data, status, request) {
+        console.log("post failed")
+      })*/
+    }
+  }
 })
 
 router.map({
