@@ -47,6 +47,14 @@ var LoginForm = new Vue({
     passwordStatus: '',
     submitting: false, // falseでボタン有効、trueでボタン無効
   },
+  created: function () {
+    this.$http.get('/api/publishToken.php').then((response) => {
+      this.input.token = response.body.token;
+      console.log(this.input.token);
+    }, (response) => {
+      // error callback
+    });
+  },
   methods: {
     formCheck: function () {
       if ('' == this.email && '' == this.password) {
@@ -92,13 +100,6 @@ var LoginForm = new Vue({
         console.log("post failed")
       })*/
     }
-  },
-  ready: function () {
-    this.$http.get('/api/publishToken.php').then((response) => {
-      // success callback
-    }, (response) => {
-      // error callback
-    });
   }
 })
 
