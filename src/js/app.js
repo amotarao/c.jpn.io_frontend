@@ -51,17 +51,17 @@ var LoginForm = new Vue({
   methods: {
     formCheck: function () {
       if ('' == this.email && '' == this.password) {
-        Alert.addAlert('warning', '空欄です！');
+        Alert.addAlert('warning', '空欄があります');
         this.emailStatus = 'has-error';
         this.passwordStatus = 'has-error';
         return;
       } else if ('' == this.email) {
-        Alert.addAlert('warning', '空欄です！');
+        Alert.addAlert('warning', '空欄があります');
         this.emailStatus = 'has-error';
         this.passwordStatus = '';
         return;
       } else if ('' == this.password) {
-        Alert.addAlert('warning', '空欄です！');
+        Alert.addAlert('warning', '空欄があります');
         this.emailStatus = '';
         this.passwordStatus = 'has-error';
         return;
