@@ -51,7 +51,7 @@ gulp.task('js', function(){
   })
   .bundle()
   .pipe(source('main.js'))
-  .pipe(gulp.dest('./dist/js'));
+  .pipe(gulp.dest('./dist'));
 });
 
 /**
