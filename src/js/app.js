@@ -5,6 +5,8 @@ const VueResource = require('vue-resource');
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+Vue.http.options.emulateJSON = true;
+
 const router = new VueRouter({
   history: true,
   saveScrollPosition: true
@@ -17,15 +19,6 @@ var Foo = {
 var Bar = {
   template: '<p>This is bar!</p>'
 };
-
-/*
-document.cookie = "KEY=VALUE";
-var hoge = document.cookie;
-
-
-
-console.log(hoge);*/
-
 
 router.map({
   '/foo': {
@@ -41,7 +34,8 @@ var LoginForm = new Vue({
   data: {
     input: {
       email: '',
-      password: ''
+      password: '',
+      token: ''
     },
     emailStatus: '',
     passwordStatus: '',
@@ -50,7 +44,6 @@ var LoginForm = new Vue({
   created: function () {
     this.$http.get('/api/publishToken.php').then((response) => {
       this.input.token = response.body.token;
-      console.log(this.input.token);
     }, (response) => {
       // error callback
     });
@@ -82,23 +75,11 @@ var LoginForm = new Vue({
     submit: function () {
       this.submitting = true;
 
-      this.$http.post('http://tnkt.boo.jp/aaa/api/', this.input).then((response) => {
-        console.log("post success")/*
-        response.status;
-        response.statusText;
-        response.headers.get('Expires');
-        this.$set('someData', response.body);*/
+      this.$http.post('/api/login.php', this.input).then((response) => {
+        // success callback
       }, (response) => {
-        console.log("post failed")
-      });/*
-
-      this.$http.post('http://tnkt.boo.jp/aaa/api/', this.email, function (data, status, request) {
-        console.log("post success")
-        console.log(status)
-      })
-      .error(function (data, status, request) {
-        console.log("post failed")
-      })*/
+        // error callback
+      });
     }
   }
 })
@@ -152,16 +133,4 @@ var test = new Vue({
     });
   }
 });
-*/
-
-
-/*
-    this.$http.post('http://example.com/forPOST', this.newEvent, function (data, status, request) {
-          console.log("post success")
-          //status check
-          console.log(status)
-
-          }).error(function (data, status, request) {
-            console.log("post failed")
-     })
 */
