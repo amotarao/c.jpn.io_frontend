@@ -12,23 +12,6 @@ const router = new VueRouter({
   saveScrollPosition: true
 });
 
-var Foo = {
-  template: '<p>This is foo!</p>'
-};
-
-var Bar = {
-  template: '<p>This is bar!</p>'
-};
-
-router.map({
-  '/foo': {
-    component: Foo
-  },
-  '/bar': {
-    component: Bar
-  }
-});
-
 var LoginForm = new Vue({
   el: '#login_form',
   data: {
@@ -98,39 +81,44 @@ var Alert = new Vue({
     }
   }
 })
-/*
+
+const templateLoginForm = {
+  template: `<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+      <form method="POST" id="login_form" class="form-horizontal" onsubmit="return false">
+        <div class="form-group" :class="emailStatus">
+          <label for="input_email" class="col-sm-3 control-label">メールアドレス</label>
+          <div class="col-xs-12 col-sm-9">
+            <input id="input_email" type="email" name="mail" placeholder="メールアドレス" class="form-control" v-model="input.email">
+          </div>
+        </div>
+        <div class="form-group" :class="passwordStatus">
+          <label for="input_password" class="col-sm-3 control-label">パスワード</label>
+          <div class="col-xs-12 col-sm-9">
+            <input id="input_password" type="password" name="password" placeholder="パスワード" class="form-control" v-model="input.password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary" @click="formCheck" :disabled="submitting">ログイン</button>
+            <p class="help-block">パスワードの再発行は<a href="/system/forget_pass.php">こちら</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>`
+}
+
 router.map({
   '/': {
-    component: require('./pages/home.vue')
+    component: templateLoginForm
   },
-  '/home': {
-    component: require('./pages/home.vue')
-  },
-  '/foo': {
-    component: require('./pages/foo.vue')
-  },
-  '/bar/:id': {
-    component: require('./pages/bar.vue')
+  '/login': {
+    component: templateLoginForm
   }
 })
-*/
-//const App = Vue.extend(require('./app.vue'))
-var App = Vue.extend({});
-router.start(App, '#app');
 
-/*
-var test = new Vue({
-  el : '#test',
-  data: {
-    test: ''
-  },
-  ready: function() {
-    this.$http({url: 'http://ip.jsontest.com/', method: 'GET'}).then(function (response) {
-//      console.log(response);
-      this.test = response.body.ip;
-    }, function (response) {
-      console.log(response);
-    });
-  }
-});
-*/
+const App = {}
+router.start(App, '#app');

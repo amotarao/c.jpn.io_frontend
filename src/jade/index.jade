@@ -1,41 +1,16 @@
-- var title = ""
-
 doctype html
 html(lang="ja")
   include modules/_head
-  body#test
+  body#app
     include modules/_navbar
     .container
       .row
         .col-xs-12
           .page-header
-            h1.h3 ログイン <small v-cloak>{{ test }}</small>
+            h1.h3 {{ title }}
     .container
       .row
         .col-xs-12.col-sm-12.col-md-offset-1.col-md-10.col-lg-offset-2.col-lg-8
-          .alert.alert-success(role="alert").
-            <strong>成功！</strong> テキストテキストテキストテキストテキスト
-          .alert.alert-info(role="alert").
-            <strong>成功！</strong> テキストテキストテキストテキストテキスト
-          .alert.alert-warning(role="alert").
-            <strong>Warning!</strong> テキストテキストテキストテキストテキスト
-          .alert.alert-danger(role="alert").
-            <strong>Warning!</strong> テキストテキストテキストテキストテキスト
-    .container
-      .row
-        .col-xs-12.col-sm-offset-1.col-sm-10.col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
-          form.form-horizontal(method="post")
-            .form-group.error_mail
-              label.col-sm-3.control-label(for="input_email") メールアドレス
-              .col-xs-12.col-sm-9
-                input#input_email.form-control(type="email",name="mail",placeholder="メールアドレス")
-                // value $mail
-            .form-group.error_password
-              label.col-sm-3.control-label(for="input_password") パスワード
-              .col-xs-12.col-sm-9
-                input#input_password.form-control(type="password",name="password",placeholder="パスワード")
-            .form-group
-              .col-xs-12.col-sm-offset-3.col-sm-9
-                button.btn.btn-primary(type="submit",name="mode",value="login") ログイン
-                p.help-block パスワードの再発行は<a href="/system/forget_pass.php">こちら</a>
+          div(role="alert",class="alert alert-{{ alert.status }}",v-for="alert in alerts") {{ alert.message }}
+    <router-view></router-view>
     include modules/_foot
